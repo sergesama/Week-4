@@ -4,6 +4,9 @@ import { Card, CardImg, CardText, CardBody,
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors} from 'react-redux-form';
 
+import { Loading } from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
+
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
 const minLength = (len) => (val) => val && (val.length >= len);
@@ -24,8 +27,7 @@ class CommentForm  extends Component {
         });
       }
 	handleComment = (values) => {
-        console.log('Current State is: ' + JSON.stringify(values));
-        alert('Current State is: ' + JSON.stringify(values));
+		this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
     }
 	
 	
@@ -57,10 +59,10 @@ class CommentForm  extends Component {
                             </Row>
                            <Row className="form-group">
 								<Col md={10}>
-									<Label htmlFor="YourName">Your Name</Label>
+									<Label htmlFor="author">Your Name</Label>
 								</Col>
                                 <Col md={10}>
-                                    <Control.text model=".YourName" id="YourName" name="YourName"
+                                    <Control.text model=".author" id="author" name="author"
                                         placeholder="Your Name"
                                         className="form-control"
                                         validators={{
@@ -69,7 +71,7 @@ class CommentForm  extends Component {
                                          />
                                     <Errors
                                         className="text-danger"
-                                        model=".YourName"
+                                        model=".author"
                                         show="touched"
                                         messages={{
                                             required: 'Required ',
@@ -87,19 +89,7 @@ class CommentForm  extends Component {
                                     <Control.textarea model=".comment" id="comment" name="comment"
                                         rows="10"
                                         className="form-control" 
-										validators={{
-                                            required, minLength: minLength(1)
-                                        }}
 										/>
-									<Errors
-                                        className="text-danger"
-                                        model=".comment"
-                                        show="touched"
-                                        messages={{
-                                            required: 'Required ',
-                                            minLength: 'Must be greater than 1 characters',
-                                        }}
-                                     />
                                 </Col>
                             </Row>
 							<Row className="form-group">
@@ -116,11 +106,11 @@ class CommentForm  extends Component {
 		);
 	}
 }
-function RenderComments({All_comments})
+function RenderComments({comments, addComment, dishId})
 	{
-		if (All_comments != null)
+		if (comments != null)
 		{
-			const comments = All_comments.map((com) => {
+			const comment = comments.map((com) => {
 				return (
 				  <div  className="list-unstyled">
 					<div>{com.comment}</div>
@@ -135,8 +125,8 @@ function RenderComments({All_comments})
 				<Card>
 						<CardBody>
 						  <h4>Comments</h4>
-						  <CardText>{comments}</CardText>
-						  
+						  <CardText>{comment}</CardText>
+						  <CommentForm dishId={dishId} addComment={addComment} />
 						</CardBody>
 					</Card>
 			)
@@ -153,7 +143,7 @@ function RenderDish({dish})
 			if (dish != null)
 				return(
 					<Card key={dish.id}>
-					   <CardImg width="100%" src={dish.image} alt={dish.name} />
+							<CardImg top src={baseUrl + dish.image} alt={dish.name} />
 						  <CardTitle>{dish.name}</CardTitle>
 					</Card>
 					);
@@ -163,7 +153,26 @@ function RenderDish({dish})
 					);
 	}
 const DishDetail =(props) =>{
-
+		if (props.isLoading) {
+            return(
+                <div className="container">
+                    <div className="row">            
+                        <Loading />
+                    </div>
+                </div>
+            );
+        }
+        else if (props.errMess) {
+            return(
+                <div className="container">
+                    <div className="row">            
+                        <h4>{props.errMess}</h4>
+                    </div>
+                </div>
+            );
+        }
+        else if (props.dish != null) 
+		
 		 if (props != null)
 		{
 			            return (
@@ -184,8 +193,11 @@ const DishDetail =(props) =>{
                         <RenderDish dish={props.dish} />
                     </div>
                     <div className="col-12 col-md-5 m-1">
-                        <RenderComments All_comments={props.comments} />
-						<CommentForm/>
+                             <RenderComments comments={props.comments}
+								addComment={props.addComment}
+								dishId={props.dish.id}
+							  />
+
                     </div>
                 </div>
                 </div>
