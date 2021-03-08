@@ -201,6 +201,30 @@
       "comment": "It's your birthday, we're gonna party!",
       "author": "25 Cent",
       "date": "2011-12-02T17:57:28.556094Z"
+    },
+    {
+      "dishId": 0,
+      "rating": "1",
+      "author": "sdf",
+      "comment": "sdf",
+      "date": "2021-03-08T12:09:53.580Z",
+      "id": 20
+    },
+    {
+      "dishId": 0,
+      "rating": "1",
+      "author": "sdf",
+      "comment": "sdf",
+      "date": "2021-03-08T12:10:08.278Z",
+      "id": 21
+    },
+    {
+      "dishId": 0,
+      "rating": "5",
+      "author": "asdasd",
+      "comment": "asdasdasd",
+      "date": "2021-03-08T12:31:02.153Z",
+      "id": 22
     }
   ],
   "promotions": [
@@ -263,6 +287,84 @@
       "message": "afadsfds",
       "date": "2017-12-04T09:41:49.890Z",
       "id": 1
+    },
+    {
+      "Feedback": {
+        "firstname": "das",
+        "lastname": "asd",
+        "telnum": "312",
+        "email": "sergesamas@gmail.com",
+        "agree": false,
+        "contactType": "Tel.",
+        "message": "dasa"
+      },
+      "date": "2021-03-08T14:51:47.061Z",
+      "id": 2
+    },
+    {
+      "firstname": "asd",
+      "lastname": "asd",
+      "telnum": "312",
+      "email": "sergesamas@gmail.com",
+      "agree": false,
+      "contactType": "Tel.",
+      "message": "wqe",
+      "id": 3
+    },
+    {
+      "firstname": "asdasd",
+      "lastname": "asdasd",
+      "telnum": "123",
+      "email": "sergesamas@gmail.com",
+      "agree": false,
+      "contactType": "Tel.",
+      "message": "asd",
+      "date": "2021-03-08T14:59:09.271Z",
+      "id": 4
+    },
+    {
+      "firstname": "asd",
+      "lastname": "asd",
+      "telnum": "321231242433",
+      "email": "das@ewqe.re",
+      "agree": true,
+      "contactType": "Email",
+      "message": "asdas",
+      "date": "2021-03-08T15:01:59.806Z",
+      "id": 5
+    },
+    {
+      "firstname": "dasdas",
+      "lastname": "asd",
+      "telnum": "31312321",
+      "email": "das@ewqe.re",
+      "agree": false,
+      "contactType": "Tel.",
+      "message": "asdasd",
+      "date": "2021-03-08T15:02:08.421Z",
+      "id": 6
+    },
+    {
+      "firstname": "asd",
+      "lastname": "sda",
+      "telnum": "312",
+      "email": "sergesamas@gmail.com",
+      "agree": false,
+      "contactType": "Tel.",
+      "message": "dsa",
+      "date": "2021-03-08T15:17:05.279Z",
+      "id": 7
+    },
+    {
+      "firstname": "das",
+      "lastname": "sad",
+      "telnum": "3123",
+      "email": "sergesamas@gmail.com",
+      "agree": false,
+      "contactType": "Tel.",
+      "message": "dasdas",
+      "date": "2021-03-08T15:19:25.509Z",
+      "id": 8
     }
   ]
 }

@@ -1,14 +1,17 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
- 
+import { Fade, Stagger } from 'react-animation-components';
+
+import { baseUrl } from '../shared/baseUrl';
+ import { Loading } from './LoadingComponent';
  function ReanderLeaders({leader})
  {
 	return(
-	<div>
+	<Fade in>
 		<Media>
         <Media left middle className="mr-5">
-          <Media src={leader.image} />
+          <Media src={baseUrl +leader.image} />
 		</Media>
 			<Media body className="text-left">
 				<Media heading>
@@ -22,7 +25,7 @@ import { Link } from 'react-router-dom';
 				</Media>
 			</Media>
 		</Media>
-	</div>
+		</Fade>
 	); 
  }
  
@@ -33,7 +36,26 @@ const About = (props) => {
             <ReanderLeaders leader={leader}/>
         );
     });
-
+		if (props.isLoading) {
+            return(
+                <div className="container">
+                    <div className="row">            
+                        <Loading />
+                    </div>
+                </div>
+            );
+        }
+        else if (props.errMess) {
+            return(
+                <div className="container">
+                    <div className="row">            
+                        <h4>{props.errMess}</h4>
+                    </div>
+                </div>
+            );
+        }
+        else if (props.leaders != null) 
+		
     return(
         <div className="container">
             <div className="row">
@@ -88,10 +110,15 @@ const About = (props) => {
                 <div className="col-12">
                     <h2>Corporate Leadership</h2>
                 </div>
+				 
                 <div className="col-12">
-                    <Media list>
-                        {leaders}
-                    </Media>
+					
+						<Media list>
+							<Stagger in>
+								{leaders}
+							</Stagger>
+						</Media>
+					
                 </div>
             </div>
         </div>
